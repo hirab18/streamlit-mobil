@@ -15,8 +15,18 @@ engineSize = st.number_input('Input Engine Size')
 predict = ''
 
 if st.button('Estimasi Harga'):
-    predict = model.predict(
-        [[year, mileage, tax, mpg, engineSize]]
-    )
-    st.write ('Estimasi harga Mobil bekas dalam Pounds : ', predict)
-    st.write ('Estimasi harga mobil bekas dalam IDR (Juta) :', predict*19000)
+    try:
+        # Validasi input sebelum prediksi
+        if any(value <= 0 for value in [year, mileage, tax, mpg, engineSize]):
+            st.error("Semua input harus bernilai lebih dari 0.")
+        else:
+            # Melakukan prediksi
+            prediction = model.predict([[year, mileage, tax, mpg, engineSize]])
+            price_in_pounds = prediction[0]
+            price_in_idr = price_in_pounds * 19000  # Konversi ke Rupiah
+
+            # Menampilkan hasil
+            st.write(f"Estimasi harga mobil bekas dalam Pounds: £{price_in_pounds:,.2f}")
+            st.write(f"Estimasi harga mobil bekas dalam IDR (Juta): Rp{price_in_idr / 1_000_000:,.2f} juta")
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat melakukan prediksi. Error: {e}")
