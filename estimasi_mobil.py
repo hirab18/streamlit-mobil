@@ -1,9 +1,6 @@
-import os
 import pickle
 import streamlit as st 
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_dir, 'estimasi_mobil.sav')
 model = pickle.load(open('estimasi_mobil.sav', 'rb'))
 
 
