@@ -18,5 +18,5 @@ if st.button('Estimasi Harga'):
     predict = model.predict(
         [[year, mileage, tax, mpg, engineSize]]
     )
-    st.write ('Estimasi harga Mobil bekas dalam Ponds : ', predict)
+    st.write ('Estimasi harga Mobil bekas dalam Pounds : ', predict)
     st.write ('Estimasi harga mobil bekas dalam IDR (Juta) :', predict*19000)
