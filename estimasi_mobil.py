@@ -4,7 +4,7 @@ import streamlit as st
 model = pickle.load(open('estimasi_mobil.sav', 'rb'))
 
 
-st.title('Prediksi Harga Mobil Bekas')
+st.title('Prediksi Harga Mobil BMW Bekas')
 
 year = st.number_input('Input Tahun Mobil')
 mileage = st.number_input('Input Km Mobil')
